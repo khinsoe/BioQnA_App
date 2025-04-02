@@ -1,1 +1,22 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Question Generator</title>
+    <script>
+        async function fetchQuestion() {
+            const response = await fetch('/get_question');
+            const question = await response.json();
+            document.getElementById('question-setup').innerText = question.setup;
+            document.getElementById('question-punchline').innerText = question.punchline;
+        }
+    </script>
+</head>
+<body>
+    <h1>Random Question Generator</h1>
+    <p id="question-setup">{{ question.setup }}</p>
+    <p id="question-punchline">{{ question.punchline }}</p>
+    <button onclick="fetchQuestion()">Get a New Question</button>
+</body>
+</html>
